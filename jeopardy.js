@@ -95,6 +95,11 @@ $("#play").on("click", handleClickOfPlay);
 function handleClickOfPlay ()
 {
   // todo set the game up if the play button is clickable
+  if (isPlayButtonClickable)
+  {
+    isPlayButtonClickable = false; // we make the buttonunclickable
+    setupTheGame(); // new game setup
+  }
 }
 
 /**
@@ -110,9 +115,14 @@ function handleClickOfPlay ()
  */
 async function setupTheGame ()
 {
-  // todo show the spinner while setting up the game
+  // todo show the spinner while setting up the game 
+  $("#spinner").removeClass("disable");
 
   // todo reset the DOM (table, button text, the end text)
+  $("#categories").empty();
+  $("#clues").empty();
+  $("#active-clue").html("");
+  $("#play").text("Game in Progress...");
 
   // todo fetch the game data (categories with clues)
 
