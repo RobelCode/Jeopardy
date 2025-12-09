@@ -3,14 +3,50 @@
   Unless you want to add styles and make it look more beautiful.
 */
 
-/*
-  Some colors you may find useful:
+
+  /* Some colors you may find useful:
   #115ff4
   #060ce9
   #28a200
   #8d2ab5
-  #74119c
-*/
+  #74119c */
+body
+{
+ background-color: #115ff4;
+ color: #3498db;
+}
+#spinner
+{
+  display: block;
+  margin: auto;
+  border: 16px solid #202846; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin
+{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+button
+{
+  background-color: #3498db;
+  color: rgb(0, 9, 12);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  border-color: aqua;
+
+}
+
 
 .disabled
 {
