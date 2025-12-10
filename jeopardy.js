@@ -125,8 +125,25 @@ async function setupTheGame ()
   $("#play").text("Game in Progress...");
 
   // todo fetch the game data (categories with clues)
+  // const categoryIds = await getCategoryIds();
+
+  // // reset categories array
+  // categories = [];
+
+  // // load each category with its clues
+  for (let id of categoryIds) {
+    const catData = await getCategoryData(id);
+    categories.push(catData);
+  }
+  
+
 
   // todo fill the table
+  fillTable(categories);
+
+  // todo hide the spinner after setting up the game
+  $("#spinner").addClass("disable");
+  $("#play").text("Game in Progress..."); 
 }
 
 /**
@@ -196,7 +213,26 @@ async function getCategoryData (categoryId)
 function fillTable (categories)
 {
   // todo
+  for (let category of categories) {
+    const th = $("<th>").text(category.title);
+    $("#categories").append(th);  
+  }
+
+    for (let category of categories) {
+      const td = $("<td>");
+      $("#clues").append(td);
+      category._td = td; // store reference to the td element
 }
+for (let catagory of categories) {
+  for (let clue of catagory.clues) {
+    const tr = $("<tr>")
+      .addClass("clue")
+      .attr("id", `${catagory.id}-${clue.id}`)
+      tr.html(clue.value || $200); // display value or default
+    catagory._td.append(tr); // append to the corresponding td
+  }
+}
+} 
 
 $(".clue").on("click", handleClickOfClue);
 
