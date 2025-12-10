@@ -274,9 +274,34 @@ $(".clue").on("click", handleClickOfClue);
 function handleClickOfClue (event)
 {
   // todo find and remove the clue from the categories
+  if (activeClueMode !== 0) return; // only proceed if no active clue
+  
+  const id = $(event.target).attr("id");
+  const [catPart, cluePart] = id.split("-");
+  const categoryId = Number(catPart.replace("cat-", ""));
+  const clueId = parseInt(cluePart.replace("clue-", ""));
+
+   // find category and clue
+  const category = categories.find(cat => cat.id === categoryId);
+  const clue = category.clues.find(c => c.id === clueId);
+
+  // remove this clue from the category
+  category.clues = category.clues.filter(c => c.id !== clueId);
+
+  // remove category if empty
+  if (category.clues.length === 0) {
+    categories = categories.filter(cat => cat.id !== categoryId);
+  }
+
+  // show the question
+  activeClue = clue;
+  activeClueMode = 1;
+  $("#active-clue").html(clue.question);
 
   // todo mark clue as viewed (you can use the class in style.css), display the question at #active-clue
+  $(event.target).addClass("viewed");
 }
+
 
 $("#active-clue").on("click", handleClickOfActiveClue);
 
