@@ -4,58 +4,128 @@
 */
 
 
-  /* Some colors you may find useful:
+  /* /* Some colors you may find useful:
   #115ff4
   #060ce9
   #28a200
   #8d2ab5
   #74119c */
-body
-{
- background-color: #115ff4;
- color: #3498db;
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #115ff4; /* Jeopardy blue */
+  color: #fff;
+  text-align: center;
 }
-#spinner
-{
-  display: block;
-  margin: auto;
-  border: 16px solid #202846; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+
+/* ===============================
+   TITLE
+================================== */
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #f4f4f4;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* ===============================
+   BUTTON
+================================== */
+button {
+  background-color: #28a200;
+  color: #fff;
+  padding: 14px 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 4px #0c5c00;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #ffffff;
+  color: #28a200;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px #0c5c00;
+}
+
+.disabled {
+  display: none;
+}
+
+/* ===============================
+   SPINNER
+================================== */
+#spinner {
+  margin: 20px auto;
+  border: 16px solid #202846;
+  border-top: 16px solid #3498db;
   border-radius: 50%;
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
 }
-@keyframes spin
-{
+
+@keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-button
-{
-  background-color: #3498db;
-  color: rgb(0, 9, 12);
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+
+/* ===============================
+   TABLE
+================================== */
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 90%;
+  max-width: 1000px;
+}
+
+th {
+  background-color: #060ce9;
+  padding: 15px;
+  font-size: 20px;
+  color: #fff;
+  border: 2px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+td {
+  background-color: #115ff4;
+  padding: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  border: 2px solid #000;
+  color: #ffd700;
   cursor: pointer;
-  border-radius: 12px;
-  border-color: aqua;
-
+  transition: background-color 0.2s;
 }
 
-
-.disabled
-{
-  display: none;
+td:hover {
+  background-color: #060ce9;
 }
 
-.viewed
-{
+.viewed {
   text-decoration: line-through;
-  color: gray;
-  
+  color: #aaa;
+  background-color: #173f88;
+  cursor: default;
 }
+
+#active-clue {
+  margin-top: 30px;
+  padding: 20px;
+  min-height: 60px;
+  background-color: #060ce9;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 12px;
+  border: 3px solid #0
