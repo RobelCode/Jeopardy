@@ -56,4 +56,6 @@ button
 .viewed
 {
   text-decoration: line-through;
+  color: gray;
+  
 }
