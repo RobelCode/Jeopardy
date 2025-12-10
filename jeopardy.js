@@ -159,6 +159,15 @@ async function getCategoryIds ()
   const ids = []; // todo set after fetching
 
   // todo fetch NUMBER_OF_CATEGORIES amount of categories
+  const response = await axios.get(`${API_URL}categories?count=100`);
+  const allCategories = response.data;
+  const validCategories = allCategories.filter(cat => cat.clues_count >= NUMBER_OF_CLUES_PER_CATEGORY);
+
+while (ids.length < NUMBER_OF_CATEGORIES) {
+  const randomIndex = Math.floor(Math.random() * validCategories.length);
+  const chosenCategory = validCategories.splice(randomIndex, 1)[0];
+  ids.push(chosenCategory.id);
+}
 
   return ids;
 }
@@ -194,7 +203,22 @@ async function getCategoryData (categoryId)
   };
 
   // todo fetch the category with NUMBER_OF_CLUES_PER_CATEGORY amount of clues
+const response = await axios.get(`${API_URL}category?id=${categoryId}`);
+const data = response.data;
 
+categoryWithClues.title = data.title;
+
+
+// Select only the required number of clues
+const selectedClues = data.clues.slice(0, NUMBER_OF_CLUES_PER_CATEGORY);
+
+//clean
+catagoryWithClues.clues = selectedClues.map(clue => ({
+  id: clue.id,
+  value: clue.value || "$200", // assign default value if missing
+  question: clue.question,
+  answer: clue.answer
+}));
   return categoryWithClues;
 }
 
