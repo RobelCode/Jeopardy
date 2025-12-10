@@ -125,10 +125,10 @@ async function setupTheGame ()
   $("#play").text("Game in Progress...");
 
   // todo fetch the game data (categories with clues)
-  // const categoryIds = await getCategoryIds();
+  const categoryIds = await getCategoryIds();
 
   // // reset categories array
-  // categories = [];
+  categories = [];
 
   // // load each category with its clues
   for (let id of categoryIds) {
@@ -213,7 +213,7 @@ categoryWithClues.title = data.title;
 const selectedClues = data.clues.slice(0, NUMBER_OF_CLUES_PER_CATEGORY);
 
 //clean
-catagoryWithClues.clues = selectedClues.map(clue => ({
+categoryWithClues.clues = selectedClues.map(clue => ({
   id: clue.id,
   value: clue.value || "$200", // assign default value if missing
   question: clue.question,
@@ -251,7 +251,7 @@ for (let catagory of categories) {
   for (let clue of catagory.clues) {
     const tr = $("<tr>")
       .addClass("clue")
-      .attr("id", `${catagory.id}-${clue.id}`)
+      .attr("id", `cat-${catagory.id}-clue-${clue.id}`)
       tr.html(clue.value || $200); // display value or default
     catagory._td.append(tr); // append to the corresponding td
   }
