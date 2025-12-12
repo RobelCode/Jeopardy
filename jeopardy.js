@@ -234,31 +234,40 @@ categoryWithClues.clues = selectedClues.map(clue => ({
  *   Besides, for each clue in a category, you should create a row element (tr) and append it to the corresponding previously created and appended cell element (td).
  * - To this row elements (tr) should add an event listener (handled by the `handleClickOfClue` function) and set their IDs with category and clue IDs. This will enable you to detect which clue is clicked.
  */
-function fillTable (categories)
-{
-  // todo
+function fillTable(categories) {
+  $("#categories").empty();
+  $("#clues").empty();
+
+  // --- HEADER ---
   for (let category of categories) {
-    const th = $("<th>").text(category.title);
-    $("#categories").append(th);  
+    $("#categories").append(
+      $("<th>").text(category.title)
+    );
   }
+
+  // --- 5 rows of clues ---
+  for (let i = 0; i < NUMBER_OF_CLUES_PER_CATEGORY; i++) {
+    const row = $("<tr>");
 
     for (let category of categories) {
-      const td = $("<td>");
-      $("#clues").append(td);
-      category._td = td; // store reference to the td element
-}
-for (let catagory of categories) {
-  for (let clue of catagory.clues) {
-    const tr = $("<tr>")
-      .addClass("clue")
-      .attr("id", `cat-${catagory.id}-clue-${clue.id}`)
-      tr.html(clue.value || $200); // display value or default
-    catagory._td.append(tr); // append to the corresponding td
+      const clue = category.clues[i];
+
+      const cell = $("<td>")
+        .addClass("clue")
+        .attr("id", `cat-${category.id}-clue-${clue.id}`)
+        .text(clue.value || "$200");
+
+      row.append(cell);
+    }
+
+    $("#clues").append(row);
   }
 }
-} 
 
-$(".clue").on("click", handleClickOfClue);
+
+
+// $(".clue").on("click", handleClickOfClue);
+$("#clues").on("click", ".clue", handleClickOfClue);
 
 /**
  * Manages the behavior when a clue is clicked.
@@ -276,10 +285,14 @@ function handleClickOfClue (event)
   // todo find and remove the clue from the categories
   if (activeClueMode !== 0) return; // only proceed if no active clue
   
-  const id = $(event.target).attr("id");
-  const [catPart, cluePart] = id.split("-");
-  const categoryId = Number(catPart.replace("cat-", ""));
-  const clueId = parseInt(cluePart.replace("clue-", ""));
+  // const id = $(event.target).attr("id");
+  // const [catPart, cluePart] = id.split("-");
+  // const categoryId = Number(catPart.replace("cat-", ""));
+  // const clueId = parseInt(cluePart.replace("clue-", ""));
+  const id = $(event.target).attr("id"); // e.g., "cat-21-clue-3056"
+  const idParts = id.split("-"); // ["cat", "21", "clue", "3056"]
+  const categoryId = Number(idParts[1]); // 21
+  const clueId = Number(idParts[3]); // 3056
 
    // find category and clue
   const category = categories.find(cat => cat.id === categoryId);

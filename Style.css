@@ -1,132 +1,171 @@
-/*
-  You don't need to touch this file to complete the assignment!
-  Unless you want to add styles and make it look more beautiful.
-*/
-
-
-  /* /* Some colors you may find useful:
-  #115ff4
-  #060ce9
-  #28a200
-  #8d2ab5
-  #74119c */
-
+/* ========= GENERAL PAGE STYLE ========= */
 body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #115ff4; /* Jeopardy blue */
-  color: #fff;
-  text-align: center;
+    background: #0a57e6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-align: center;
 }
 
-/* ===============================
-   TITLE
-================================== */
+/* ========= TITLE ========= */
 h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  color: #f4f4f4;
-  text-shadow: 2px 2px 0 #000;
+    font-size: 64px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
-/* ===============================
-   BUTTON
-================================== */
-button {
-  background-color: #28a200;
-  color: #fff;
-  padding: 14px 30px;
-  font-size: 20px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  box-shadow: 0 4px #0c5c00;
-  transition: 0.2s;
+/* ========= PLAY BUTTON ========= */
+#play {
+    padding: 18px 40px;
+    margin: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
+    background: #1ab300;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s;
 }
 
-button:hover {
-  background-color: #ffffff;
-  color: #28a200;
+#play:active {
+    transform: scale(0.95);
 }
 
-button:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px #0c5c00;
+#play[disabled],
+#play.not-clickable {
+    background: #666;
+    cursor: not-allowed;
 }
 
-.disabled {
-  display: none;
-}
-
-/* ===============================
-   SPINNER
-================================== */
-#spinner {
-  margin: 20px auto;
-  border: 16px solid #202846;
-  border-top: 16px solid #3498db;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ===============================
-   TABLE
-================================== */
+/* ========= TABLE ========= */
 table {
-  margin: 20px auto;
-  border-collapse: collapse;
-  width: 90%;
-  max-width: 1000px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    width: 85%;
+    max-width: 1600px;
 }
 
 th {
-  background-color: #060ce9;
-  padding: 15px;
-  font-size: 20px;
-  color: #fff;
-  border: 2px solid #000;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    background: #0019d8;
+    padding: 18px;
+    border: 3px solid black;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
 }
 
 td {
-  background-color: #115ff4;
-  padding: 18px;
-  font-size: 22px;
-  font-weight: bold;
-  border: 2px solid #000;
-  color: #ffd700;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    width: 160px;
+    height: 90px;
+    border: 3px solid black;
+    background: #1e3b76;
+    cursor: pointer;
+
+    /* Jeopardy text style */
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffcc00;
+    vertical-align: middle;
+    text-align: center;
+
+    transition: background 0.2s;
 }
 
+/* Hover effect */
 td:hover {
-  background-color: #060ce9;
+    background: #294c9d;
 }
 
-.viewed {
-  text-decoration: line-through;
-  color: #aaa;
-  background-color: #173f88;
-  cursor: default;
+/* ========= VIEWED CLUES ========= */
+td.viewed {
+    background: #444c63 !important;
+    color: #9a9a9a !important;
+    text-decoration: line-through;
+    cursor: default;
 }
 
+/* ========= ACTIVE QUESTION / ANSWER BOX ========= */
 #active-clue {
-  margin-top: 30px;
-  padding: 20px;
-  min-height: 60px;
-  background-color: #060ce9;
-  color: #fff;
-  font-size: 24px;
-  border-radius: 12px;
-  border: 3px solid #28a200;
+    margin: 40px auto;
+    padding: 25px;
+    width: 85%;
+    max-width: 1600px;
+    min-height: 120px;
+    background: #0019d8;
+    border: 5px solid #00ff00;
+    border-radius: 10px;
+
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========= SPINNER ========= */
+#spinner {
+    margin: 15px auto;
+    border: 12px solid #eee;
+    border-top: 12px solid #ff0000;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+
+    animation: spin 1s linear infinite;
+}
+
+.disable {
+    display: none !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 1024px) {
+    td {
+        width: 110px;
+        height: 70px;
+        font-size: 22px;
+    }
+
+    th {
+        font-size: 20px;
+        padding: 12px;
+    }
+
+    #active-clue {
+        font-size: 26px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    table {
+        width: 98%;
+    }
+
+    td {
+        width: 70px;
+        height: 55px;
+        font-size: 18px;
+    }
+
+    th {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    #active-clue {
+        font-size: 20px;
+        padding: 15px;
+    }
 }
