@@ -60,7 +60,7 @@ td {
     width: 160px;
     height: 90px;
     border: 3px solid black;
-    background: #1e3b76;
+    background: #444c63;
     cursor: pointer;
 
     /* Jeopardy text style */
@@ -73,17 +73,34 @@ td {
     transition: background 0.2s;
 }
 
+td {
+    transition: 
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease,
+        font-size 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
 /* Hover effect */
 td:hover {
-    background: #294c9d;
+    background: linear-gradient(135deg, #1e90ff, #0019d8);
+    color: #ffeb3b;                 /* Jeopardy gold */
+    transform: scale(1.08);         /* Grows the whole box */
+    font-size: 36px;                /* Bigger text */
+    box-shadow: 0 0 15px rgba(255, 235, 59, 0.6);
 }
+
 
 /* ========= VIEWED CLUES ========= */
 td.viewed {
     background: #444c63 !important;
     color: #9a9a9a !important;
     text-decoration: line-through;
-    cursor: default;
+    cursor: not-allowed;
+}
+td.viewed:hover {
+    background: #44634a !important;
 }
 
 /* ========= ACTIVE QUESTION / ANSWER BOX ========= */
@@ -104,6 +121,7 @@ td.viewed {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
 /* ========= SPINNER ========= */
 #spinner {
